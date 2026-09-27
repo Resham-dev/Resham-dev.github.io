@@ -90,7 +90,7 @@ const tools = [
     color: "#f7df1e",
     skills: [
       { label: "React",
-        image: "Asset/icons/javascript/react.png"
+        image: "Asset/icons/javascript/React.png"
       },
       { label: "HTML", 
         image: "Asset/icons/javascript/html.png"
