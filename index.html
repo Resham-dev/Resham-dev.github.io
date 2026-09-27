@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Resham Nisar | Designer & Developer</title>
+
+  <meta name="color-scheme" content="dark light" />
+  <script>
+    // Keep the original dark design unless the visitor has chosen light mode.
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem('portfolio-theme') === 'light' ? 'light' : 'dark';
+    } catch (_) {}
+  </script>
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -51,7 +59,12 @@
         <span>↗</span>
       </a>
 
-      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+        <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+        <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.5 14A9 9 0 0 1 10 3.5 9 9 0 1 0 20.5 14Z"/></svg>
+      </button>
+
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
         ☰
       </button>
     </nav>
@@ -62,17 +75,26 @@
     <section class="hero" id="home">
       <div class="hero-inner section-padding">
         <div class="hero-content">
-          <p class="intro-text">Hi, I’m Resham</p>
-
-          <h2>
-            From Wireframes to <br />
-            <span>Working Products.</span>
-          </h2>
+        <p class="intro-text">Hi, I’m Resham</p>
 
           <p class="hero-description">
-            I design sleek interfaces and build functional, scalable solutions
-            that make an impact.
+            I design sleek interfaces and develop functional, scalable
+            solutions that make an impact.
           </p>
+
+          <h2
+            class="typing-title"
+            id="typingTitle"
+            aria-label="From Wireframes to Working Products."
+          >
+            <span class="typing-line typing-first" aria-hidden="true">
+              <span id="typingFirst">From Wireframes to</span>
+            </span>
+
+            <span class="typing-line typing-second" aria-hidden="true">
+              <span id="typingSecond">Working Products.</span>
+            </span>
+          </h2>
 
           <div class="code-card" aria-label="Code snippet">
             <div class="code-line"><span>01</span> function <b>createImpact</b>() {</div>
@@ -99,6 +121,15 @@
 
     <!-- Tools Section -->
     <section class="tools-section section-padding">
+      <div class="tools-heading">
+        <p class="tools-eyebrow">What I Work With</p>
+
+        <h1>Core Tools & Technical Expertise</h1>
+
+        <p class="tools-subtitle">
+          Explore the platforms, frameworks, and technical capabilities that support my design and development workflow.
+        </p>
+      </div>
       <div class="tools-wrapper" id="toolsWrapper">
         <!-- Tools will be loaded using JavaScript -->
       </div>
@@ -110,7 +141,7 @@
         <div class="about-image-box">
           <div class="profile-placeholder">
             <img
-              src="assets/images/about-me.png"
+              src="Asset/images/about-me.png"
               alt="Resham Nisar"
               class="about-profile-img"
             />
@@ -122,29 +153,22 @@
             I <span>Design</span> Experiences. <br />
             I <span>Build</span> Solutions.
           </h2>
+          <div class="about-description">
+            <p>
+              I’m Resham Nisar, a designer and developer with a gold medal
+              in my Bachelor’s degree in Computer Science. I combine creative
+              thinking with technical expertise to build thoughtful digital experiences.
+            </p>
 
-          <p>
-            I’m a Designer and Developer who loves turning ideas into beautiful,
-            functional and user-focused products. With a strong foundation in UI/UX
-            design and clean code, I deliver digital solutions that not only look
-            amazing but also perform brilliantly.
-          </p>
+            <p>
+              I specialize in UI/UX, graphic design, branding, and visual communication, with an emphasis on usability, typography, and visual consistency. My technical expertise includes full-stack development, machine learning, computer vision, database design, and real-time systems.
+            </p>
 
-          <div class="about-points">
-            <div>
-              <span>✦</span>
-              UI/UX · Frontend · Design
-            </div>
-
-            <div>
-              <span>✦</span>
-              Clean & Maintainable Code
-            </div>
-
-            <div>
-              <span>✦</span>
-              Performance Focused
-            </div>
+            <p>
+              I bring these disciplines together through structured workflows,
+              Git-based version control, and close collaboration—creating solutions
+              that look professional, function reliably, and meet real user needs.
+            </p>
           </div>
         </div>
       </div>
@@ -185,16 +209,16 @@
       </div>
 
       <div class="work-switch">
-        <button class="work-tab active" type="button" data-work="developer">
+        <button class="work-tab active" type="button" data-work="developer" aria-pressed="true">
           &lt;/&gt; Developer Work
         </button>
 
-        <button class="work-tab" type="button" data-work="design">
+        <button class="work-tab" type="button" data-work="design" aria-pressed="false">
           ✎ Design Work
         </button>
       </div>
 
-      <div class="projects-wrapper" id="projectsWrapper">
+      <div class="projects-wrapper" id="projectsWrapper" aria-live="polite">
         <!-- Projects will be loaded using JavaScript -->
       </div>
 
@@ -225,16 +249,13 @@
           <div class="social-links">
             <a href="#" aria-label="LinkedIn">in</a>
             <a href="#" aria-label="GitHub">gh</a>
-            <a href="#" aria-label="Dribbble">dr</a>
-            <a href="#" aria-label="Behance">Be</a>
-            <a href="#" aria-label="Instagram">ig</a>
           </div>
         </div>
 
         <div class="contact-info">
           <h3>Contact</h3>
-          <p>✉ resham.nisar.dev@gmail.com</p>
-          <p>☎ +92 300 1234567</p>
+          <p>✉ reshamnisar4@gmail.com</p>
+          <p>☎ +92 335 5834744</p>
           <p>⌖ Islamabad, Pakistan</p>
         </div>
 
@@ -246,7 +267,7 @@
             I’m available for freelance work.
           </p>
 
-          <a href="mailto:resham.nisar.dev@gmail.com" class="say-hello-btn">
+          <a href="mailto:reshamnisar4@gmail.com" class="say-hello-btn">
             Say Hello 👋
           </a>
         </div>
@@ -256,7 +277,7 @@
 
   <!-- Footer -->
   <footer class="footer section-padding">
-    <p>© 2025 Resham Nisar. All rights reserved.</p>
+    <p>© <span id="currentYear">2026</span> Resham Nisar. All rights reserved.</p>
     <p>Crafted with ❤️ and lots of ☕</p>
     <a href="#home" class="back-top" aria-label="Back to top">↑</a>
   </footer>
